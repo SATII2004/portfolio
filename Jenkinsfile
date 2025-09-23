@@ -12,7 +12,7 @@ pipeline {
     steps {
         echo 'Checking out code from Git...'
         // Explicitly define the branch as 'main'
-        git branch: 'main', url: 'YOUR_GITHUB_REPOSITORY_URL_HERE'
+        git branch: 'main', url: 'https://github.com/SATII2004/portfolio.git'
     }
 }
 
