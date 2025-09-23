@@ -45,7 +45,7 @@ pipeline {
         stage('Deploy Application') {
             steps {
                 echo 'Deploying the application stack...'
-                bat 'docker-compose down'
+                bat 'docker-compose down -v'
                 bat 'docker-compose up -d'
                 echo 'Deployment complete! 🚀'
             }
