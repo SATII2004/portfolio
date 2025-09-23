@@ -1,8 +1,10 @@
 package com.portfolio.backend.model;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "contact") // <-- Add this line to specify the correct table name
 public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
