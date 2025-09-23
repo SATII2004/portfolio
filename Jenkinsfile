@@ -3,7 +3,7 @@ pipeline {
 
     tools {
         // Ensure 'maven-3.9.6' and 'node-18' are configured in Jenkins > Manage Jenkins > Tools
-        maven 'maven-3.9.6'
+        maven 'maven-3.9.11'
         nodejs 'node-18'
     }
 
