@@ -36,11 +36,11 @@ pipeline {
         }
 
         stage('Build Docker Images') {
-            steps {
-                echo 'Building Docker images using Docker Compose...'
-                bat 'docker-compose build'
-            }
-        }
+    steps {
+        echo 'Building Docker images using Docker Compose...'
+        bat 'docker-compose build --no-cache'
+    }
+}
 
         stage('Deploy Application') {
             steps {
