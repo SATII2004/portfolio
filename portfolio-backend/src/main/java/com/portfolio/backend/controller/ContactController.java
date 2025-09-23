@@ -24,4 +24,13 @@ public class ContactController {
     public java.util.List<Contact> getAllContacts() {
         return contactRepository.findAll();
     }
+    
+    
+    @PostMapping("/debug")
+    public void debugSave(@RequestBody Contact contact) {
+        Contact saved = contactRepository.save(contact);
+        System.out.println("Saved Contact: " + saved);
+    }
+    
+    
 }
