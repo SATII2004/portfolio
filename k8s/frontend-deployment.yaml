@@ -15,7 +15,8 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: ${DOCKERHUB_USERNAME:-sampleuser}/portfolio-frontend:latest
+          image: docker.io/satish009/portfolio-frontend:latest
+
           imagePullPolicy: IfNotPresent
           env:
             - name: VITE_API_URL
