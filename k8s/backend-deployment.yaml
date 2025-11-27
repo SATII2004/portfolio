@@ -15,7 +15,8 @@ spec:
     spec:
       containers:
         - name: backend
-          image: ${DOCKERHUB_USERNAME:-sampleuser}/portfolio-backend:latest
+          image: docker.io/satish009/portfolio-backend:latest
+
           imagePullPolicy: IfNotPresent
           env:
             - name: SPRING_PROFILES_ACTIVE
