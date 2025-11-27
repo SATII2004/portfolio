@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: portfolio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: ${DOCKERHUB_USERNAME:-sampleuser}/portfolio-frontend:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: VITE_API_URL
+              value: http://backend.portfolio.svc.cluster.local:8080
+          ports:
+            - containerPort: 80
+

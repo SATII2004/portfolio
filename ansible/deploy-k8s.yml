@@ -1,0 +1,8 @@
+- hosts: local
+  gather_facts: false
+  tasks:
+    - name: Apply Kubernetes manifests
+      ansible.builtin.command: kubectl apply -f k8s/
+      args:
+        chdir: "{{ playbook_dir }}/.."
+
