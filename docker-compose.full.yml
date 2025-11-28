@@ -1,0 +1,52 @@
+version: "3.9"
+
+x-backend-image: &backend_image "${DOCKERHUB_USERNAME:-sampleuser}/portfolio-backend:${BACKEND_TAG:-latest}"
+x-frontend-image: &frontend_image "${DOCKERHUB_USERNAME:-sampleuser}/portfolio-frontend:${FRONTEND_TAG:-latest}"
+
+services:
+  mysql:
+    image: mysql:8.4
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-password}
+      MYSQL_DATABASE: portfolio_db
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - portfolio
+
+  backend:
+    image: *backend_image
+    restart: unless-stopped
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      DB_URL: jdbc:mysql://mysql:3306/portfolio_db
+      DB_USERNAME: root
+      DB_PASSWORD: ${DB_PASSWORD:-password}
+      JWT_SECRET: ${JWT_SECRET:-prod-secret-change-me}
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
+    networks:
+      - portfolio
+
+  frontend:
+    image: *frontend_image
+    restart: unless-stopped
+    environment:
+      VITE_API_URL: http://backend:8080
+    depends_on:
+      - backend
+    ports:
+      - "4173:80"
+    networks:
+      - portfolio
+
+volumes:
+  mysql_data:
+
+networks:
+  portfolio:
+    driver: bridge
+

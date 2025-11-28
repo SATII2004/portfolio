@@ -1,0 +1,40 @@
+- hosts: local
+  gather_facts: false
+  tasks:
+    - name: Apply Kubernetes manifests
+      block:
+        - name: Apply Namespace
+          ansible.builtin.command: kubectl apply -f k8s/namespace.yaml
+          args:
+            chdir: "{{ playbook_dir }}/.."
+
+        - name: Apply MySQL Deployment
+          ansible.builtin.command: kubectl apply -f k8s/mysql-deployment.yaml
+          args:
+            chdir: "{{ playbook_dir }}/.."
+
+        - name: Apply MySQL Service
+          ansible.builtin.command: kubectl apply -f k8s/mysql-service.yaml
+          args:
+            chdir: "{{ playbook_dir }}/.."
+
+        - name: Apply Backend Deployment
+          ansible.builtin.command: kubectl apply -f k8s/backend-deployment.yaml
+          args:
+            chdir: "{{ playbook_dir }}/.."
+
+        - name: Apply Backend Service
+          ansible.builtin.command: kubectl apply -f k8s/backend-service.yaml
+          args:
+            chdir: "{{ playbook_dir }}/.."
+
+        - name: Apply Frontend Deployment
+          ansible.builtin.command: kubectl apply -f k8s/frontend-deployment.yaml
+          args:
+            chdir: "{{ playbook_dir }}/.."
+
+        - name: Apply Frontend Service
+          ansible.builtin.command: kubectl apply -f k8s/frontend-service.yaml
+          args:
+            chdir: "{{ playbook_dir }}/.."
+

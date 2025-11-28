@@ -1,0 +1,23 @@
+node_modules
+.idea
+.vscode
+dist
+target
+.DS_Store
+*.log
+# Node modules
+/portfolio/node_modules
+/portfolio/dist
+.DS_Store
+
+# Maven build files
+/portfolio-backend/target
+/portfolio-backend/.settings
+/portfolio-backend/.classpath
+/portfolio-backend/.project
+
+# IDE files
+.idea
+*.iml
+.vscode
+.metadata
